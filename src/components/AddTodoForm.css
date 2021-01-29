@@ -1,39 +1,3 @@
-.background-cover {
-  opacity: 0.8;
-  background-color: #ccc;
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  top: 0px;
-  left: 0px;
-  z-index: -1000;
-}
-.bodyCard {
-  box-shadow: 2px 2px 10px 4px black;
-  border-radius: 5px;
-  display: flex;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 3rem;
-  justify-content: center;
-  height: 90%;
-  width: 40%;
-  background-color: #fbbfcb;
-  flex-direction: column;
-}
-
-.title {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.box {
-  background-color: white;
-  border-style: solid;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 5px;
-}
 .form {
   width: 70%;
   height: 30%;
