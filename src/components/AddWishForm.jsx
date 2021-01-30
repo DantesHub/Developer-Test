@@ -1,19 +1,38 @@
 import React, { useState } from "react";
-import "./AddTodoForm.css";
+import "./AddWishForm.css";
 
-const AddTodoForm = (props) => {
+const AddWishForm = (props) => {
   const [content, setContent] = useState("");
   const handleChange = (evt) => {
     setContent(evt.target.value);
   };
   const handleAdd = (evt) => {
     evt.preventDefault();
+    if (content.trim() === "") {
+      alert("Wish for something!");
+      return;
+    }
+    let duplicate = false;
+    props.wishes.map((wish) => {
+      if (wish.content.trim() === content.trim()) {
+        alert("Can't have two of the same wishes!");
+        duplicate = true;
+      }
+    });
+
     setContent("");
-    props.addTodo(content);
+    if (!duplicate) {
+      props.addWish(content);
+    }
   };
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(content, "yo");
+    props.clearList();
+    if (props.wishes.length) {
+      alert("Wish List Submitted to Santa!");
+    } else {
+      alert("Wish List Cannot be Empty");
+    }
   };
 
   return (
@@ -29,4 +48,4 @@ const AddTodoForm = (props) => {
   );
 };
 
-export default AddTodoForm;
+export default AddWishForm;

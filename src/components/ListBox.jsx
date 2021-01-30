@@ -1,17 +1,17 @@
 import React from "react";
 import "./ListBox.css";
-const ListBox = ({ todos, deleteTodo }) => {
-  const todoList = todos.length ? (
-    todos.map((todo) => {
+const ListBox = ({ wishes, deleteWish }) => {
+  const wishList = wishes.length ? (
+    wishes.map((wish) => {
       return (
         <div
-          className='todo'
-          key={todo.id}
+          className='wish'
+          key={wish.id}
           onClick={() => {
-            deleteTodo(todo.id);
+            deleteWish(wish.id);
           }}
         >
-          {todo.content}
+          {wish.content}
         </div>
       );
     })
@@ -19,7 +19,7 @@ const ListBox = ({ todos, deleteTodo }) => {
     <div></div>
   );
 
-  return <div className='listBox box'>{todoList}</div>;
+  return <div className='listBox box'>{wishList}</div>;
 };
 
 export default ListBox;

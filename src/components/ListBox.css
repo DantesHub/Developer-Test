@@ -1,4 +1,12 @@
 .listBox {
   width: 70%;
   height: 60%;
+  padding: 0.5rem;
+}
+
+.wish {
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  padding-left: 1rem;
+  padding-top: 0.3rem;
 }

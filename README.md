@@ -1,5 +1,8 @@
-### New Developer Test: Wish List For Santa
+### Dante's Notes
+- Time taken to complete around 80 minutes. 
+- Decided to use a React component for the App Component and use functional components for everything else to show I can work with both. 
 
+### New Developer Test: Wish List For Santa
 For this assignment, you must build a basic application using React and Redux that allows users to add items (strings) to a "wish list" and then submit the list (to Santa).
 
 ## Demo

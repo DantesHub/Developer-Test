@@ -5,38 +5,60 @@ import { v4 as uuidv4 } from "uuid";
 import ListBox from "./components/ListBox.jsx";
 import "./App.css";
 import { addItem, deleteItem } from "./redux/actions";
-import AddTodoForm from "./components/AddTodoForm.jsx";
+import AddWishForm from "./components/AddWishForm.jsx";
 class App extends Component {
   // Aside from styling and reducer.jsx, all code should be written inside of App.jsx.
   //Not sure if this meant we were allowed to use components or not
-  state = {
-    todos: [{ id: 1, content: "buy some milk" }],
-  };
-  deleteTodo = (id) => {
-    const todos = this.state.todos.filter((todo) => {
-      return todo.id !== id;
-    });
-    this.setState({ todos });
+  deleteWish = (id) => {
+    this.props.deleteItem(id);
   };
 
-  addTodo = (content) => {
-    const todo = {
+  addWish = (content) => {
+    const item = {
+      id: uuidv4(),
       content: content,
-      id: uuidv4,
     };
-    todo.id = uuidv4();
-    this.setState({ todos: [...this.state.todos, todo] });
+    this.props.addItem(item);
+  };
+
+  clearList = () => {
+    //we could also make another action for this call
+    for (const wish of this.props.wishes) {
+      this.deleteWish(wish.id);
+    }
+    return;
   };
   render() {
+    console.log(this.props.wishes);
     return (
       <div className='background-cover'>
         <div className='bodyCard'>
           <h1 className='title'>MY WISHLIST</h1>
-          <ListBox todos={this.state.todos} deleteTodo={this.deleteTodo} />
-          <AddTodoForm addTodo={this.addTodo} />
+          <ListBox wishes={this.props.wishes} deleteWish={this.deleteWish} />
+          <AddWishForm
+            addWish={this.addWish}
+            wishes={this.props.wishes}
+            clearList={this.clearList}
+          />
         </div>
       </div>
     );
   }
 }
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    wishes: state.wishList,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    deleteItem: (id) => {
+      dispatch(deleteItem(id));
+    },
+    addItem: (item) => {
+      dispatch(addItem(item));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
